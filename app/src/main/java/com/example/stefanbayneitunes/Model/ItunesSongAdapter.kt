@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.stefanbayneitunes.DataClass.AllDataOfTheSongs
+import com.example.stefanbayneitunes.DataClass.DataForSongs
 import com.example.stefanbayneitunes.R
 import com.squareup.picasso.Picasso
 

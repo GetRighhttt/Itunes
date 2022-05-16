@@ -1,7 +1,7 @@
 package com.example.stefanbayneitunes.DataClass
 
 data class DataForSongs(
-    val results : List<DataForSongs>
+    val results : List<AllDataOfTheSongs>
 )
 
 data class AllDataOfTheSongs(

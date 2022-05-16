@@ -1,5 +1,6 @@
 package com.example.stefanbayneitunes.API
 
+import com.example.stefanbayneitunes.DataClass.AllDataOfTheSongs
 import com.example.stefanbayneitunes.DataClass.DataForSongs
 import retrofit2.Call
 import retrofit2.Retrofit
