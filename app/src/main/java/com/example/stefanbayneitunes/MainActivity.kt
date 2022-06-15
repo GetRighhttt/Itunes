@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabTabLayout,tabViewPager){ tab, index ->
             tab.text = when(index){
-                0 -> {"HipHop"}
+                0 -> {"Rap"}
                 1 -> {"Jazz"}
                 2 -> {"Gospel"}
                 else -> {throw Resources.NotFoundException("Tab not found")}

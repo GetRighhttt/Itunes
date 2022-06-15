@@ -15,20 +15,22 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+// Fragment for our Tab layout
 class SongForFragment : Fragment() {
 
     lateinit var rvSongList: RecyclerView
     lateinit var songAdapter: ItunesSongAdapter
 
-    private var musicType : Int = HIPHOP
+    private var musicType : Int = RAP
 
     companion object {
 
         const val MUSIC_KEY = "MUSIC_TYPE"
 
-        const val HIPHOP = 0
+        const val RAP = 0
         const val JAZZ = 1
         const val GOSPEL = 2
+
 
         fun newInstance(musicType: Int) : SongForFragment{
             val fragment = SongForFragment()
@@ -45,8 +47,8 @@ class SongForFragment : Fragment() {
     {
         musicType = requireArguments().getInt(MUSIC_KEY)
 
-        if (musicType == HIPHOP){
-            startRetrofit(inflater, ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java).getHipHopSongs())
+        if (musicType == RAP){
+            startRetrofit(inflater, ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java).getRapSongs())
         }else if(musicType == JAZZ){
             startRetrofit(inflater, ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java).getJazzSongs())
         }else if(musicType == GOSPEL){
@@ -57,7 +59,7 @@ class SongForFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_itunes_song_layout, container, false)
 
-        rvSongList = view.findViewById(R.id.name_Of_Song)
+        rvSongList = view.findViewById(R.id.rv_songs)
 
         getSongs(inflater)
 

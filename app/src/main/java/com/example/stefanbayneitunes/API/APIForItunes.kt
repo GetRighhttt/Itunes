@@ -9,8 +9,9 @@ import retrofit2.http.GET
 
 interface ApiServiceITunes {
 
-    @GET("search?term=hiphop&amp;media=music&entity=song&limit=50")
-    fun getHipHopSongs(
+    // Getting each URL for use. Each returns a list of songs of each type
+    @GET("search?term=pop&amp;media=music&entity=song&limit=50")
+    fun getRapSongs(
     ): Call<DataForSongs>
 
     @GET("search?term=jazz&amp;media=music&entity=song&limit=50")
@@ -32,7 +33,7 @@ interface ApiServiceITunes {
                     .build()
             }
 
-            return  instance!!
+            return instance!!
         }
     }
 }

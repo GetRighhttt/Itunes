@@ -7,8 +7,8 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_songs"
-        android:padding="8sp"
-        android:layout_marginBottom="10sp"
+        android:padding="8dp"
+        android:layout_marginBottom="10dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:listitem="@layout/image_for_itunes_song"
