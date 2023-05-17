@@ -1,4 +1,4 @@
-package com.example.stefanbayneitunes.Model
+package com.example.stefanbayneitunes.view
 
 import android.content.Intent
 import android.net.Uri
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.stefanbayneitunes.DataClass.AllDataOfTheSongs
+import com.example.stefanbayneitunes.model.AllDataOfTheSongs
 import com.example.stefanbayneitunes.R
 import com.squareup.picasso.Picasso
 
@@ -33,7 +33,7 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
             tvSong.text = iTunesSong.trackName
 
             // assigning the price of each song
-            tvSongPrice.text = "$" + iTunesSong.trackPrice.toString()
+            tvSongPrice.text = "$" + iTunesSong.trackPrice
             tvSongPrice.text = tvSongPrice.text.replace("^[$][-].*$".toRegex(), "***FREE***")
 
             // Loading the image into the recyclerView with Picasso
@@ -60,13 +60,12 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
         return SongViewHolder(listItem)
     }
 
-    // Binds the viewholder to the position
+    // Binds the viewHolder to the position
     override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
         holder.onBind(list[position])
     }
 
     // returns the item count in the recyclerView
-    override fun getItemCount(): Int {
-        return list.size
-    }
+    override fun getItemCount(): Int = list.size
+
 }

@@ -1,11 +1,12 @@
-package com.example.stefanbayneitunes
+package com.example.stefanbayneitunes.view
 
 import android.content.res.Resources
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.appcompat.content.res.AppCompatResources
+import androidx.appcompat.widget.SearchView
 import androidx.viewpager2.widget.ViewPager2
-import com.example.stefanbayneitunes.Model.ViewPagerAdapter
+import com.example.stefanbayneitunes.R
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -27,9 +28,9 @@ class MainActivity : AppCompatActivity() {
 
         TabLayoutMediator(tabTabLayout,tabViewPager){ tab, index ->
             tab.text = when(index){
-                0 -> {"Rap"}
-                1 -> {"Jazz"}
-                2 -> {"Gospel"}
+                0 -> {"Lil Wayne"}
+                1 -> {"Kendrick"}
+                2 -> {"J Cole"}
                 else -> {throw Resources.NotFoundException("Tab not found")}
             }
 

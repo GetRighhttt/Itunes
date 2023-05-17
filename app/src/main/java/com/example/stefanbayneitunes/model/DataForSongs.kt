@@ -1,4 +1,4 @@
-package com.example.stefanbayneitunes.DataClass
+package com.example.stefanbayneitunes.model
 
 data class DataForSongs(
     val results : List<AllDataOfTheSongs>
