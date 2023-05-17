@@ -91,6 +91,9 @@ class SongForFragment : Fragment() {
     private fun setUpSearchView(searchView: SearchView, inflater: LayoutInflater): SearchView = searchView.apply {
         setOnQueryTextListener(object : SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
+
+                rvSongList.smoothScrollToPosition(0)
+
                 if(query != null) {
                     musicType = requireArguments().getInt(MUSIC_KEY)
 
@@ -119,6 +122,7 @@ class SongForFragment : Fragment() {
                             )
                         }
                     }
+                    clearFocus()
                 }
                 return true
             }
