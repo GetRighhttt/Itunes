@@ -60,7 +60,7 @@ class SongForFragment : Fragment() {
         return view
     }
 
-    private fun searchSong(inflater: LayoutInflater, term: String) =
+    private fun searchSongs(inflater: LayoutInflater, term: String) =
         startRetrofit(inflater, retrofit.getArtistsSongs(term))
 
     private fun getSongs(inflater: LayoutInflater) {
@@ -68,15 +68,15 @@ class SongForFragment : Fragment() {
 
         when (musicType) {
             RAP -> {
-                searchSong(inflater, "lil+wayne")
+                searchSongs(inflater, "lil+wayne")
             }
 
             JAZZ -> {
-                searchSong(inflater, "kendrick+lamar")
+                searchSongs(inflater, "kendrick+lamar")
             }
 
             GOSPEL -> {
-                searchSong(inflater, "jcole")
+                searchSongs(inflater, "jcole")
             }
         }
     }
@@ -93,15 +93,15 @@ class SongForFragment : Fragment() {
 
                         when (musicType) {
                             RAP -> {
-                                searchSong(inflater, query)
+                                searchSongs(inflater, query)
                             }
 
                             JAZZ -> {
-                                searchSong(inflater, query)
+                                searchSongs(inflater, query)
                             }
 
                             GOSPEL -> {
-                                searchSong(inflater, query)
+                                searchSongs(inflater, query)
                             }
                         }
                         clearFocus()
