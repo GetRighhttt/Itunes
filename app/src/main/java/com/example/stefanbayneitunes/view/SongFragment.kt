@@ -22,7 +22,7 @@ class SongForFragment : Fragment() {
     lateinit var songAdapter: ItunesSongAdapter
     lateinit var searchView: SearchView
 
-    private var musicType: Int = RAP
+    private var musicType: Int = WAYNE
 
     private val retrofit: ApiServiceITunes =
         ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
@@ -30,9 +30,9 @@ class SongForFragment : Fragment() {
     companion object {
 
         const val MUSIC_KEY = "MUSIC_TYPE"
-        const val RAP = 0
-        const val JAZZ = 1
-        const val GOSPEL = 2
+        const val WAYNE = 0
+        const val KENDRICK = 1
+        const val COLE = 2
 
         fun newInstance(musicType: Int): SongForFragment {
             val fragment = SongForFragment()
@@ -67,15 +67,15 @@ class SongForFragment : Fragment() {
         musicType = requireArguments().getInt(MUSIC_KEY)
 
         when (musicType) {
-            RAP -> {
+            WAYNE -> {
                 searchSongs(inflater, "lil+wayne")
             }
 
-            JAZZ -> {
+            KENDRICK -> {
                 searchSongs(inflater, "kendrick+lamar")
             }
 
-            GOSPEL -> {
+            COLE -> {
                 searchSongs(inflater, "jcole")
             }
         }
@@ -92,15 +92,15 @@ class SongForFragment : Fragment() {
                         musicType = requireArguments().getInt(MUSIC_KEY)
 
                         when (musicType) {
-                            RAP -> {
+                            WAYNE -> {
                                 searchSongs(inflater, query)
                             }
 
-                            JAZZ -> {
+                            KENDRICK -> {
                                 searchSongs(inflater, query)
                             }
 
-                            GOSPEL -> {
+                            COLE -> {
                                 searchSongs(inflater, query)
                             }
                         }

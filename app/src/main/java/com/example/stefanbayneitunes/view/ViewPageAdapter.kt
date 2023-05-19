@@ -13,9 +13,9 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) : FragmentStateAdapte
     // We need the adapter for the tablayout to create instances of each view
     override fun createFragment(position: Int): Fragment {
         return when(position){
-            0 -> {SongForFragment.newInstance(SongForFragment.RAP)}
-            1 -> {SongForFragment.newInstance(SongForFragment.JAZZ)}
-            2 -> {SongForFragment.newInstance(SongForFragment.GOSPEL)}
+            0 -> {SongForFragment.newInstance(SongForFragment.WAYNE)}
+            1 -> {SongForFragment.newInstance(SongForFragment.KENDRICK)}
+            2 -> {SongForFragment.newInstance(SongForFragment.COLE)}
             else -> {throw Resources.NotFoundException("Tab not found")}
         }
     }
