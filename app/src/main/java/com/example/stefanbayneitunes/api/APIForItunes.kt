@@ -11,31 +11,11 @@ interface ApiServiceITunes {
 
     // Getting each URL for use. Each returns a list of songs of each type
     @GET("search?")
-    fun getLilWayneSongs(
+    fun getArtistsSongs(
         @Query("term") term: String,
-        @Query("media") media: String,
-        @Query("entity") entity: String,
-        @Query("attribute") attribute: String,
-        @Query("lang") lang: String = "en_us",
-        @Query("explicit") explicit: String = "Yes"
-    ): Call<DataForSongs>
-
-    @GET("search")
-    fun getKendrickLamarSongs(
-        @Query("term") term: String,
-        @Query("media") media: String,
-        @Query("entity") entity: String,
-        @Query("attribute") attribute: String,
-        @Query("lang") lang: String = "en_us",
-        @Query("explicit") explicit: String = "Yes"
-    ): Call<DataForSongs>
-
-    @GET("search")
-    fun getJColeSongs(
-        @Query("term") term: String,
-        @Query("media") media: String,
-        @Query("entity") entity: String,
-        @Query("attribute") attribute: String,
+        @Query("media") media: String = "music",
+        @Query("entity") entity: String = "song",
+        @Query("attribute") attribute: String = "artistTerm",
         @Query("lang") lang: String = "en_us",
         @Query("explicit") explicit: String = "Yes"
     ): Call<DataForSongs>

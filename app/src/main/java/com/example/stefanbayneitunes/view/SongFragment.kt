@@ -24,10 +24,12 @@ class SongForFragment : Fragment() {
 
     private var musicType: Int = RAP
 
+    private val retrofit: ApiServiceITunes =
+        ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
+
     companion object {
 
         const val MUSIC_KEY = "MUSIC_TYPE"
-
         const val RAP = 0
         const val JAZZ = 1
         const val GOSPEL = 2
@@ -58,81 +60,61 @@ class SongForFragment : Fragment() {
         return view
     }
 
+    private fun searchSong(inflater: LayoutInflater, term: String) =
+        startRetrofit(inflater, retrofit.getArtistsSongs(term))
+
     private fun getSongs(inflater: LayoutInflater) {
         musicType = requireArguments().getInt(MUSIC_KEY)
 
         when (musicType) {
             RAP -> {
-                startRetrofit(
-                    inflater,
-                    ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                        .getLilWayneSongs("lil+wayne", "music", "song", "artistTerm")
-                )
+                searchSong(inflater, "lil+wayne")
             }
 
             JAZZ -> {
-                startRetrofit(
-                    inflater,
-                    ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                        .getKendrickLamarSongs("kendrick+lamar", "music", "song", "artistTerm")
-                )
+                searchSong(inflater, "kendrick+lamar")
             }
 
             GOSPEL -> {
-                startRetrofit(
-                    inflater,
-                    ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                        .getJColeSongs("jcole", "music", "song", "artistTerm")
-                )
+                searchSong(inflater, "jcole")
             }
         }
     }
 
-    private fun setUpSearchView(searchView: SearchView, inflater: LayoutInflater): SearchView = searchView.apply {
-        setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
+    private fun setUpSearchView(searchView: SearchView, inflater: LayoutInflater): SearchView =
+        searchView.apply {
+            setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+                override fun onQueryTextSubmit(query: String?): Boolean {
 
-                rvSongList.smoothScrollToPosition(0)
+                    rvSongList.smoothScrollToPosition(0)
 
-                if(query != null) {
-                    musicType = requireArguments().getInt(MUSIC_KEY)
+                    if (query != null) {
+                        musicType = requireArguments().getInt(MUSIC_KEY)
 
-                    when (musicType) {
-                        RAP -> {
-                            startRetrofit(
-                                inflater,
-                                ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                                    .getLilWayneSongs(query, "music", "song", "artistTerm")
-                            )
+                        when (musicType) {
+                            RAP -> {
+                                searchSong(inflater, query)
+                            }
+
+                            JAZZ -> {
+                                searchSong(inflater, query)
+                            }
+
+                            GOSPEL -> {
+                                searchSong(inflater, query)
+                            }
                         }
-
-                        JAZZ -> {
-                            startRetrofit(
-                                inflater,
-                                ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                                    .getKendrickLamarSongs(query, "music", "song", "artistTerm")
-                            )
-                        }
-
-                        GOSPEL -> {
-                            startRetrofit(
-                                inflater,
-                                ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-                                    .getJColeSongs(query, "music", "song", "artistTerm")
-                            )
-                        }
+                        clearFocus()
                     }
-                    clearFocus()
+                    return true
                 }
-                return true
-            }
 
-            override fun onQueryTextChange(newText: String?): Boolean {
-                return true
-            }
+                override fun onQueryTextChange(newText: String?): Boolean {
+                    return true
+                }
 
-        })
-    }
+            })
+        }
 
     private fun startRetrofit(inflater: LayoutInflater, call: Call<DataForSongs>) {
         call.enqueue(object : Callback<DataForSongs> {
