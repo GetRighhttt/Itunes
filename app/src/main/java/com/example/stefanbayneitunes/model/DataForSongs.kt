@@ -10,5 +10,9 @@ data class AllDataOfTheSongs(
     val trackName: String,
     val artworkUrl60: String,
     val trackPrice: String,
-    val previewUrl: String
+    val previewUrl: String,
+    val collectionPrice: String,
+    val country: String,
+    val currency: String,
+    val primaryGenreName: String
 )

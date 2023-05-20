@@ -51,13 +51,23 @@
             app:layout_constraintTop_toBottomOf="@id/genre_type"
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
+            <TextView
+                android:id="@+id/price_Of_Song"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="$1.00"
+                android:layout_weight="1"
+                android:layout_margin="8dp"
+                app:layout_constraintTop_toBottomOf="@id/name_Of_Song"
+                app:layout_constraintStart_toEndOf="@id/song_image"/>
+
         <TextView
-            android:id="@+id/price_Of_Song"
+            android:id="@+id/primary_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            tools:text="$100.00"
+            tools:text="Rap"
             android:layout_margin="8dp"
-            app:layout_constraintTop_toBottomOf="@id/name_Of_Song"
+            app:layout_constraintTop_toBottomOf="@id/price_Of_Song"
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
