@@ -53,6 +53,10 @@ interface ApiServiceITunes {
 
             return instance!!
         }
+
+        val retrofit : ApiServiceITunes by lazy {
+            ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
+        }
     }
 }
 

@@ -27,15 +27,14 @@ class SongForFragment : Fragment() {
     lateinit var searchView: SearchView
     private var musicType: Int = WAYNE
 
-    private val retrofit: ApiServiceITunes =
-        ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
-
     companion object {
         const val MUSIC_KEY = "MUSIC_TYPE"
         const val WAYNE = 0
         const val KENDRICK = 1
         const val COLE = 2
         const val BURNA_BOY = 3
+
+        private val retrofit= ApiServiceITunes.retrofit
 
         fun newInstance(musicType: Int): SongForFragment {
             val fragment = SongForFragment()
