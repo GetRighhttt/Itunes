@@ -9,9 +9,10 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.stefanbayneitunes.model.AllDataOfTheSongs
 import com.example.stefanbayneitunes.R
-import com.squareup.picasso.Picasso
 
 
 class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>) :
@@ -44,10 +45,11 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>) :
             }
 
             // Loading the image into the recyclerView with Picasso
-            Picasso.get()
+            Glide.with(itemView.context)
                 .load(iTunesSong.artworkUrl60)
                 .placeholder(R.drawable.baseline_music_note_24)
-                .fit()
+                .centerCrop()
+                .transition(DrawableTransitionOptions.withCrossFade())
                 .into(ivUserThumbnail)
 
             // Making the itunes song able to be played with the previewUrl

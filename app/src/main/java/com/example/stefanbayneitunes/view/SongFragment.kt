@@ -11,21 +11,17 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.stefanbayneitunes.api.ApiServiceITunes
 import com.example.stefanbayneitunes.model.DataForSongs
 import com.example.stefanbayneitunes.R
-import com.example.stefanbayneitunes.view.SongForFragment.Companion.MUSIC_KEY
-import com.example.stefanbayneitunes.view.SongForFragment.Companion.WAYNE
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
+import com.example.stefanbayneitunes.databinding.FragmentItunesSongLayoutBinding
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class SongForFragment : Fragment() {
 
-    lateinit var rvSongList: RecyclerView
-    lateinit var songAdapter: ItunesSongAdapter
-    lateinit var searchView: SearchView
-    private var musicType: Int = WAYNE
+    private var _binding: FragmentItunesSongLayoutBinding? = null
+    val binding get() = _binding!!
+
+    private var artist: Int = 0
 
     companion object {
         const val MUSIC_KEY = "MUSIC_TYPE"
@@ -52,23 +48,23 @@ class SongForFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val view = inflater.inflate(R.layout.fragment_itunes_song_layout, container, false)
+        _binding = FragmentItunesSongLayoutBinding.inflate(inflater, container, false)
 
-        rvSongList = view.findViewById(R.id.rv_songs)
-        searchView = view.findViewById(R.id.search_view_one)
         getSongs(inflater)
-        setUpSearchView(searchView, inflater)
+        binding.apply {
+            setUpSearchView(searchViewOne, inflater)
+        }
 
-        return view
+        return binding.root
     }
 
     private fun searchSongs(inflater: LayoutInflater, term: String) =
         startRetrofit(inflater, retrofit.getArtistsSongs(term))
 
     private fun getSongs(inflater: LayoutInflater) {
-        musicType = requireArguments().getInt(MUSIC_KEY)
+        artist = requireArguments().getInt(MUSIC_KEY)
 
-        when (musicType) {
+        when (artist) {
             WAYNE -> {
                 searchSongs(inflater, "lil+wayne")
             }
@@ -92,29 +88,32 @@ class SongForFragment : Fragment() {
             setOnQueryTextListener(object : SearchView.OnQueryTextListener {
                 override fun onQueryTextSubmit(query: String?): Boolean {
 
-                    rvSongList.smoothScrollToPosition(0)
+                    binding.apply {
 
-                    if (query != null) {
-                        musicType = requireArguments().getInt(MUSIC_KEY)
+                        rvSongs.smoothScrollToPosition(0)
 
-                        when (musicType) {
-                            WAYNE -> {
-                                searchSongs(inflater, query)
+                        if (query != null) {
+                            artist = requireArguments().getInt(MUSIC_KEY)
+
+                            when (artist) {
+                                WAYNE -> {
+                                    searchSongs(inflater, query)
+                                }
+
+                                KENDRICK -> {
+                                    searchSongs(inflater, query)
+                                }
+
+                                COLE -> {
+                                    searchSongs(inflater, query)
+                                }
+
+                                BURNA_BOY -> {
+                                    searchSongs(inflater, query)
+                                }
                             }
-
-                            KENDRICK -> {
-                                searchSongs(inflater, query)
-                            }
-
-                            COLE -> {
-                                searchSongs(inflater, query)
-                            }
-
-                            BURNA_BOY -> {
-                                searchSongs(inflater, query)
-                            }
+                            clearFocus()
                         }
-                        clearFocus()
                     }
                     return true
                 }
@@ -131,9 +130,11 @@ class SongForFragment : Fragment() {
                 call: Call<DataForSongs>,
                 response: Response<DataForSongs>
             ) {
-                if (response.isSuccessful) {
-                    songAdapter = ItunesSongAdapter(response.body()!!.results)
-                    rvSongList.adapter = songAdapter
+                binding.apply {
+                    if (response.isSuccessful) {
+                        val songAdapter = ItunesSongAdapter(response.body()!!.results)
+                        rvSongs.adapter = songAdapter
+                    }
                 }
             }
 
@@ -141,6 +142,11 @@ class SongForFragment : Fragment() {
                 Toast.makeText(inflater.context, t.message, Toast.LENGTH_LONG).show()
             }
         })
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
     }
 
 }
