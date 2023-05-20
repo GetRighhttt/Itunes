@@ -46,7 +46,7 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>) :
             // Loading the image into the recyclerView with Picasso
             Picasso.get()
                 .load(iTunesSong.artworkUrl60)
-                .placeholder(R.drawable.ic_baseline_dashboard_24)
+                .placeholder(R.drawable.baseline_music_note_24)
                 .fit()
                 .into(ivUserThumbnail)
 
