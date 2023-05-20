@@ -24,7 +24,7 @@
             android:contentDescription="@string/picture" />
 
         <TextView
-            android:id="@+id/name_Of_Artist"
+            android:id="@+id/artist_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -36,34 +36,34 @@
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
         <TextView
-            android:id="@+id/genre_type"
+            android:id="@+id/collection_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Collection name"
             android:layout_margin="8dp"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/name_Of_Artist"
+            app:layout_constraintTop_toBottomOf="@id/artist_name"
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
         <TextView
-            android:id="@+id/name_Of_Song"
+            android:id="@+id/track_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="Song name"
             android:layout_margin="8dp"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/genre_type"
+            app:layout_constraintTop_toBottomOf="@id/collection_name"
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
             <TextView
-                android:id="@+id/price_Of_Song"
+                android:id="@+id/song_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 tools:text="$1.00"
                 android:layout_weight="1"
                 android:layout_margin="8dp"
                 android:ellipsize="end"
-                app:layout_constraintTop_toBottomOf="@id/name_Of_Song"
+                app:layout_constraintTop_toBottomOf="@id/track_name"
                 app:layout_constraintStart_toEndOf="@id/song_image"/>
 
         <TextView
@@ -73,7 +73,7 @@
             tools:text="Rap"
             android:layout_margin="8dp"
             android:ellipsize="end"
-            app:layout_constraintTop_toBottomOf="@id/price_Of_Song"
+            app:layout_constraintTop_toBottomOf="@id/song_price"
             app:layout_constraintStart_toEndOf="@id/song_image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
