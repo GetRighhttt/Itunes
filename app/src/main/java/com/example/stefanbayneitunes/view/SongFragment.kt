@@ -15,13 +15,11 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// Fragment for our Tab layout
 class SongForFragment : Fragment() {
 
     lateinit var rvSongList: RecyclerView
     lateinit var songAdapter: ItunesSongAdapter
     lateinit var searchView: SearchView
-
     private var musicType: Int = WAYNE
 
     private val retrofit: ApiServiceITunes =

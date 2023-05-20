@@ -1,10 +1,9 @@
 package com.example.stefanbayneitunes.view
 
 import android.content.res.Resources
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.content.res.AppCompatResources
-import androidx.appcompat.widget.SearchView
 import androidx.viewpager2.widget.ViewPager2
 import com.example.stefanbayneitunes.R
 import com.google.android.material.tabs.TabLayout
@@ -12,8 +11,8 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tabViewPager : ViewPager2
-    private lateinit var tabTabLayout : TabLayout
+    private lateinit var tabViewPager: ViewPager2
+    private lateinit var tabTabLayout: TabLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,22 +25,41 @@ class MainActivity : AppCompatActivity() {
 
         tabViewPager.adapter = ViewPagerAdapter(this)
 
-        TabLayoutMediator(tabTabLayout,tabViewPager){ tab, index ->
-            tab.text = when(index){
-                0 -> {"Lil Wayne"}
-                1 -> {"Kendrick"}
-                2 -> {"J Cole"}
-                else -> {throw Resources.NotFoundException("Tab not found")}
+        TabLayoutMediator(tabTabLayout, tabViewPager) { tab, index ->
+            tab.text = when (index) {
+                0 -> {
+                    "Lil Wayne"
+                }
+
+                1 -> {
+                    "Kendrick"
+                }
+
+                2 -> {
+                    "J Cole"
+                }
+
+                else -> {
+                    throw Resources.NotFoundException("Tab not found")
+                }
             }
 
-            tab.icon = when(index){
+            tab.icon = when (index) {
                 0 -> {
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_account_circle_24)}
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_account_circle_24)
+                }
+
                 1 -> {
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_dashboard_24)}
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_dashboard_24)
+                }
+
                 2 -> {
-                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_deck_24)}
-                else -> {throw Resources.NotFoundException("Tab not found")}
+                    AppCompatResources.getDrawable(this, R.drawable.ic_baseline_deck_24)
+                }
+
+                else -> {
+                    throw Resources.NotFoundException("Tab not found")
+                }
             }
         }.attach()
 

@@ -20,12 +20,12 @@ interface ApiServiceITunes {
         @Query("explicit") explicit: String = "Yes"
     ): Call<DataForSongs>
 
-    companion object{
+    companion object {
         private const val BASE_URL = "https://itunes.apple.com/"
         private var instance: Retrofit? = null
 
-        fun createRetrofit(): Retrofit{
-            if(instance == null){
+        fun createRetrofit(): Retrofit {
+            if (instance == null) {
                 instance = Retrofit.Builder().baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build()

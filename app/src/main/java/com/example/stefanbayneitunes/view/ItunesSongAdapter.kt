@@ -20,7 +20,6 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
 
         // method to bind all the views in the layout to the recyclerView
         fun onBind(iTunesSong: AllDataOfTheSongs){
-            // Initializing all the views so we can use them
             val tvArtist: TextView = itemView.findViewById(R.id.name_Of_Artist)
             val tvCollection: TextView = itemView.findViewById(R.id.genre_type)
             val tvSong : TextView =  itemView.findViewById(R.id.name_Of_Song)
@@ -53,17 +52,15 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
         }
     }
 
-    // Creates the ViewHolder and inflates the layour
+    // Creates the ViewHolder and inflates the layout
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SongViewHolder {
-        val listItem = LayoutInflater.from(parent.context).inflate(R.layout.image_for_itunes_song, parent, false)
-
+        val listItem = LayoutInflater.from(parent.context)
+            .inflate(R.layout.image_for_itunes_song, parent, false)
         return SongViewHolder(listItem)
     }
 
     // Binds the viewHolder to the position
-    override fun onBindViewHolder(holder: SongViewHolder, position: Int) {
-        holder.onBind(list[position])
-    }
+    override fun onBindViewHolder(holder: SongViewHolder, position: Int) = holder.onBind(list[position])
 
     // returns the item count in the recyclerView
     override fun getItemCount(): Int = list.size
