@@ -39,6 +39,10 @@ class MainActivity : AppCompatActivity() {
                     "J Cole"
                 }
 
+                3 -> {
+                    "Burna Boy"
+                }
+
                 else -> {
                     throw Resources.NotFoundException("Tab not found")
                 }
@@ -55,6 +59,10 @@ class MainActivity : AppCompatActivity() {
 
                 2 -> {
                     AppCompatResources.getDrawable(this, R.drawable.ic_baseline_deck_24)
+                }
+
+                3 -> {
+                    AppCompatResources.getDrawable(this, R.drawable.baseline_music_note_24)
                 }
 
                 else -> {

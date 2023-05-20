@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 interface ApiServiceITunes {
 
     // Getting each URL for use. Each returns a list of songs of each type
-    @GET("search?")
+    @GET("search")
     fun getArtistsSongs(
         @Query("term") term: String,
         @Query("media") media: String = "music",

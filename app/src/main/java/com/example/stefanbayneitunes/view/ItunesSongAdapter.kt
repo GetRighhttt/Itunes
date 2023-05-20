@@ -1,5 +1,6 @@
 package com.example.stefanbayneitunes.view
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.net.Uri
 import android.view.LayoutInflater
@@ -19,6 +20,7 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
     inner class  SongViewHolder(itemView : View): RecyclerView.ViewHolder(itemView){
 
         // method to bind all the views in the layout to the recyclerView
+        @SuppressLint("SetTextI18n")
         fun onBind(iTunesSong: AllDataOfTheSongs){
             val tvArtist: TextView = itemView.findViewById(R.id.name_Of_Artist)
             val tvCollection: TextView = itemView.findViewById(R.id.genre_type)
@@ -33,7 +35,7 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>): RecyclerView
 
             // assigning the price of each song
             tvSongPrice.text = "$" + iTunesSong.trackPrice
-            tvSongPrice.text = tvSongPrice.text.replace("^[$][-].*$".toRegex(), "***FREE***")
+            tvSongPrice.text = tvSongPrice.text.replace("^[$]-.*$".toRegex(), "***FREE***")
 
             // Loading the image into the recyclerView with Picasso
             Picasso.get()

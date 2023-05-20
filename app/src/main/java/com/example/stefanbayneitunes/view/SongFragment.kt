@@ -11,6 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.stefanbayneitunes.api.ApiServiceITunes
 import com.example.stefanbayneitunes.model.DataForSongs
 import com.example.stefanbayneitunes.R
+import com.example.stefanbayneitunes.view.SongForFragment.Companion.MUSIC_KEY
+import com.example.stefanbayneitunes.view.SongForFragment.Companion.WAYNE
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -26,11 +31,11 @@ class SongForFragment : Fragment() {
         ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
 
     companion object {
-
         const val MUSIC_KEY = "MUSIC_TYPE"
         const val WAYNE = 0
         const val KENDRICK = 1
         const val COLE = 2
+        const val BURNA_BOY = 3
 
         fun newInstance(musicType: Int): SongForFragment {
             val fragment = SongForFragment()
@@ -76,6 +81,10 @@ class SongForFragment : Fragment() {
             COLE -> {
                 searchSongs(inflater, "jcole")
             }
+
+            BURNA_BOY -> {
+                searchSongs(inflater, "burna+boy")
+            }
         }
     }
 
@@ -101,6 +110,10 @@ class SongForFragment : Fragment() {
                             COLE -> {
                                 searchSongs(inflater, query)
                             }
+
+                            BURNA_BOY -> {
+                                searchSongs(inflater, query)
+                            }
                         }
                         clearFocus()
                     }
@@ -110,7 +123,6 @@ class SongForFragment : Fragment() {
                 override fun onQueryTextChange(newText: String?): Boolean {
                     return true
                 }
-
             })
         }
 

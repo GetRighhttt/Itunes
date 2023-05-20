@@ -22,11 +22,15 @@ class ViewPagerAdapter(fragmentActivity: FragmentActivity) :
                 SongForFragment.newInstance(SongForFragment.COLE)
             }
 
+            3 -> {
+                SongForFragment.newInstance(SongForFragment.BURNA_BOY)
+            }
+
             else -> {
                 throw Resources.NotFoundException("Tab not found")
             }
         }
     }
 
-    override fun getItemCount() = 3
+    override fun getItemCount() = 4
 }
