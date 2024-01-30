@@ -30,7 +30,7 @@ class ItunesSongAdapter(private val list: List<AllDataOfTheSongs>) :
                 trackName.text = iTunesSong.trackName
                 primaryGenre.text = iTunesSong.primaryGenreName
 
-                if(iTunesSong.trackPrice.isNullOrBlank()) {
+                if(iTunesSong.trackPrice.isBlank()) {
                     songPrice.text = "**FREE**"
                 } else {
                     songPrice.text = "$${iTunesSong.trackPrice} / $${iTunesSong.collectionPrice}"

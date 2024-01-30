@@ -41,7 +41,7 @@ interface ApiServiceITunes {
             return client
         }
 
-        fun createRetrofit(): Retrofit {
+        val createRetrofit: () -> Retrofit = {
             val gson: GsonConverterFactory = GsonConverterFactory.create()
 
             if (instance == null) {
@@ -50,12 +50,11 @@ interface ApiServiceITunes {
                     .client(provideHttpInterceptor())
                     .build()
             }
-
-            return instance!!
+            instance!!
         }
 
         val retrofit : ApiServiceITunes by lazy {
-            ApiServiceITunes.createRetrofit().create(ApiServiceITunes::class.java)
+            createRetrofit().create(ApiServiceITunes::class.java)
         }
     }
 }
